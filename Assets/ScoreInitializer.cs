@@ -6,7 +6,7 @@ public class ScoreInitializer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ShotReactor.score = 0;
+		ShotReactor.miss = 0;
 	}
 	
 	// Update is called once per frame

@@ -6,8 +6,8 @@ public class RankingListManager : MonoBehaviour {
 
 	private struct scoreInfo
 	{
-		public string userName;
-		public int score;
+		public float time;	// クリア時間[s]
+		public int miss;
 	}
 
 	public static RankingListManager singleton;
@@ -27,26 +27,26 @@ public class RankingListManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scoreInfos [0].userName = "いちいのひと";
-		scoreInfos [0].score = 40;
-		scoreInfos [1].userName = "にいのひと";
-		scoreInfos [1].score = 30;
-		scoreInfos [2].userName = "さん";
-		scoreInfos [2].score = 20;
-		scoreInfos [3].userName = "よん";
-		scoreInfos [3].score = 20;
-		scoreInfos [4].userName = "ごいのひと";
-		scoreInfos [4].score = 20;
-		scoreInfos [5].userName = "ろくい";
-		scoreInfos [5].score = 10;
-		scoreInfos [6].userName = "七位の人";
-		scoreInfos [6].score = 10;
-		scoreInfos [7].userName = "はち";
-		scoreInfos [7].score = 10;
-		scoreInfos [8].userName = "きゅうい";
-		scoreInfos [8].score = 10;
-		scoreInfos [9].userName = "じゅうい";
-		scoreInfos [9].score = 0;
+		scoreInfos [0].time = 600;
+		scoreInfos [0].miss = 50;
+		scoreInfos [1].time = 610;
+		scoreInfos [1].miss = 60;
+		scoreInfos [2].time = 620;
+		scoreInfos [2].miss = 70;
+		scoreInfos [3].time = 630;
+		scoreInfos [3].miss = 80;
+		scoreInfos [4].time = 640;
+		scoreInfos [4].miss = 90;
+		scoreInfos [5].time = 650;
+		scoreInfos [5].miss = 100;
+		scoreInfos [6].time = 660;
+		scoreInfos [6].miss = 110;
+		scoreInfos [7].time = 670;
+		scoreInfos [7].miss = 120;
+		scoreInfos [8].time = 680;
+		scoreInfos [8].miss = 130;
+		scoreInfos [9].time = 690;
+		scoreInfos [9].miss = 140;
 	}
 	
 	// Update is called once per frame
@@ -54,20 +54,56 @@ public class RankingListManager : MonoBehaviour {
 		
 	}
 
-	public int registerRankingList(int score, string name){
+	public int registerRankingList(int miss, float time){
 		bool changeFlag = false;		// スコア上書き管理用
 		int	rank = -1;					// 順位情報（返り値）
+		float pena = time + (miss * 10);
 
 		// 全ランキング情報を順に見ていく
 		for (int i = 0; i < NumberOfScoreInfo; i++) {
-			// 引数のスコアより小さいスコアのところまできたらスコア情報を上書きし、changeFlagをたてる
-			if (score >= scoreInfos [i].score) {
-				int tmpScore = scoreInfos [i].score;
-				string tmpName = scoreInfos [i].userName;
-				scoreInfos [i].score = score;
-				scoreInfos [i].userName = name;
-				score = tmpScore;
-				name = tmpName;
+			int tmpMiss;
+			float tmpTime;
+			/*
+			// 引数のミス数と同じだったらタイム情報を見る
+			if (miss == scoreInfos [i].miss) {
+				// 引数のタイムより長いタイムのところまできたらスコア情報を上書きし、changeFlagをたてる
+				if (time <= scoreInfos [i].time) {
+					tmpMiss = scoreInfos [i].miss;
+					tmpTime = scoreInfos [i].time;
+					scoreInfos [i].miss = miss;
+					scoreInfos [i].time = time;
+					miss = tmpMiss;
+					time = tmpTime;
+					if (!changeFlag) {
+						rank = i + 1;
+						changeFlag = true;
+					}
+				}
+			}
+			// 引数のミス数より大きいミス数のところまできたらスコア情報を上書きし、changeFlagをたてる
+			else if (miss < scoreInfos [i].miss) {
+				tmpMiss = scoreInfos [i].miss;
+				tmpTime = scoreInfos [i].time;
+				scoreInfos [i].miss = miss;
+				scoreInfos [i].time = time;
+				miss = tmpMiss;
+				time = tmpTime;
+				// 初めてスコア情報を上書きした時はその時の順位を順位情報として記憶しておく
+				if (!changeFlag) {
+					rank = i + 1;
+					changeFlag = true;
+				}
+			}
+			*/
+			// 引数のペナルティ値より大きいペナルティ値のところまできたらスコア情報を上書きし、changeFlagをたてる
+			if (pena <= (scoreInfos [i].time + (scoreInfos [i].miss * 10.0))) {
+				tmpMiss = scoreInfos [i].miss;
+				tmpTime = scoreInfos [i].time;
+				scoreInfos [i].miss = miss;
+				scoreInfos [i].time = time;
+				miss = tmpMiss;
+				time = tmpTime;
+				pena = tmpTime + (tmpMiss * 10);
 				// 初めてスコア情報を上書きした時はその時の順位を順位情報として記憶しておく
 				if (!changeFlag) {
 					rank = i + 1;
@@ -79,13 +115,13 @@ public class RankingListManager : MonoBehaviour {
 		return rank;	// (保存しているランキング内に入らなかったら-1を返す)
 	}
 
-	public int getRankFromRankingList(int score){
+	public int getRankFromRankingList(int miss){
 		int	rank = -1;					// 順位情報（返り値）
 
 		// 全ランキング情報を順に見ていく
 		for (int i = 0; i < NumberOfScoreInfo; i++) {
 			// 引数のスコアより小さいスコアのところまできたらスコア情報を上書きする
-			if (score >= scoreInfos [i].score) {
+			if (miss >= scoreInfos [i].miss) {
 				rank = i + 1;
 				break;
 			}
@@ -94,11 +130,11 @@ public class RankingListManager : MonoBehaviour {
 		return rank;	// (保存しているランキング内に入らなかったら-1を返す)
 	}
 
-	public int getScoreByRank(int rank){
-		return scoreInfos [rank - 1].score;
+	public int getMissByRank(int rank){
+		return scoreInfos [rank - 1].miss;
 	}
 
-	public string getNameByRank(int rank){
-		return scoreInfos [rank - 1].userName;
+	public float getTimeByRank(int rank){
+		return scoreInfos [rank - 1].time;
 	}
 }

@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 298060300}
   - component: {fileID: 298060299}
   m_Layer: 5
-  m_Name: Rank3Score
+  m_Name: Rank3Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 445217842}
   - component: {fileID: 445217841}
   m_Layer: 5
-  m_Name: Rank9User
+  m_Name: Rank9Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 685254399}
   - component: {fileID: 685254398}
   m_Layer: 5
-  m_Name: Rank8Score
+  m_Name: Rank8Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 696805790}
   - component: {fileID: 696805789}
   m_Layer: 5
-  m_Name: Rank5Score
+  m_Name: Rank5Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 773695583}
   - component: {fileID: 773695582}
   m_Layer: 5
-  m_Name: Rank9Score
+  m_Name: Rank9Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1545,7 +1545,7 @@ GameObject:
   - component: {fileID: 857811575}
   - component: {fileID: 857811574}
   m_Layer: 5
-  m_Name: Rank6Score
+  m_Name: Rank6Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1796,7 +1796,7 @@ GameObject:
   - component: {fileID: 981292451}
   - component: {fileID: 981292450}
   m_Layer: 5
-  m_Name: Rank7Score
+  m_Name: Rank7Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1871,7 +1871,7 @@ GameObject:
   - component: {fileID: 1043448610}
   - component: {fileID: 1043448609}
   m_Layer: 5
-  m_Name: Rank1Score
+  m_Name: Rank1Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2077,7 +2077,7 @@ GameObject:
   - component: {fileID: 1161556073}
   - component: {fileID: 1161556072}
   m_Layer: 5
-  m_Name: Rank10User
+  m_Name: Rank10Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 1267549179}
   - component: {fileID: 1267549178}
   m_Layer: 5
-  m_Name: Rank5User
+  m_Name: Rank5Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,7 +2513,7 @@ GameObject:
   - component: {fileID: 1332327838}
   - component: {fileID: 1332327837}
   m_Layer: 5
-  m_Name: Rank4User
+  m_Name: Rank4Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2777,7 +2777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7517a9d033333480d9a78e1b341bde3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userText:
+  timeText:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2788,7 +2788,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  scoreText:
+  missText:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2905,7 +2905,7 @@ GameObject:
   - component: {fileID: 1414325844}
   - component: {fileID: 1414325843}
   m_Layer: 5
-  m_Name: Rank2User
+  m_Name: Rank2Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2950,7 +2950,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1e88d66d7a42545e3addf58f2581c18b, type: 3}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3038,7 +3038,7 @@ GameObject:
   - component: {fileID: 1512507405}
   - component: {fileID: 1512507404}
   m_Layer: 5
-  m_Name: Rank7User
+  m_Name: Rank7Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3184,7 +3184,7 @@ GameObject:
   - component: {fileID: 1758844307}
   - component: {fileID: 1758844306}
   m_Layer: 5
-  m_Name: Rank2Score
+  m_Name: Rank2Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3278,7 +3278,7 @@ GameObject:
   - component: {fileID: 1761647817}
   - component: {fileID: 1761647816}
   m_Layer: 5
-  m_Name: Rank3User
+  m_Name: Rank3Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3323,7 +3323,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1e88d66d7a42545e3addf58f2581c18b, type: 3}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3426,7 +3426,7 @@ GameObject:
   - component: {fileID: 1808020726}
   - component: {fileID: 1808020725}
   m_Layer: 5
-  m_Name: Rank8User
+  m_Name: Rank8Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3571,7 +3571,7 @@ GameObject:
   - component: {fileID: 1900388986}
   - component: {fileID: 1900388985}
   m_Layer: 5
-  m_Name: Rank4Score
+  m_Name: Rank4Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3645,7 +3645,7 @@ GameObject:
   - component: {fileID: 1929073674}
   - component: {fileID: 1929073673}
   m_Layer: 5
-  m_Name: Rank10Score
+  m_Name: Rank10Miss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3791,7 +3791,7 @@ GameObject:
   - component: {fileID: 1966173622}
   - component: {fileID: 1966173624}
   m_Layer: 5
-  m_Name: Rank1User
+  m_Name: Rank1Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3836,7 +3836,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1e88d66d7a42545e3addf58f2581c18b, type: 3}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3885,7 +3885,7 @@ GameObject:
   - component: {fileID: 2030629714}
   - component: {fileID: 2030629713}
   m_Layer: 5
-  m_Name: Rank6User
+  m_Name: Rank6Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

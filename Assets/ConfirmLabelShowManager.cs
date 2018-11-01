@@ -11,7 +11,8 @@ public class ConfirmLabelShowManager : MonoBehaviour {
 	void Start () {
 		confirmLabel = GameObject.Find ("ConfirmLabel");
 		confirmLabel.SetActive (false);
-		StartCoroutine("showConfirmLabel");
+		// ユーザ名登録は行わない
+		//StartCoroutine("showConfirmLabel");
 	}
 	
 	// Update is called once per frame

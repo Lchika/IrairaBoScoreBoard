@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameEndDirector : MonoBehaviour {
 
-    public Text bulletNumText;
+    //public Text bulletNumText;
     public Text playTimeText;
 	public SerialHandler serialHandler;
 
@@ -17,8 +17,8 @@ public class GameEndDirector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (float.Parse(bulletNumText.text) <= 0.0 || float.Parse(playTimeText.text) <= 0.0 || Input.GetMouseButtonDown(0)) {
-			serialHandler.Write ("1");
+		if (Input.GetMouseButtonDown(0)) {
+			//serialHandler.Write ("1");
 			SceneManager.LoadScene("ResultScene");
         }
 	}

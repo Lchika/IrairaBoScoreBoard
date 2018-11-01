@@ -7,8 +7,8 @@ public class ScoreShowManager : MonoBehaviour {
 
 	private const int NumberOfScore = 10;
 	GameObject scorePrefab;
-	public Text[] userText = new Text[NumberOfScore];
-	public Text[] scoreText = new Text[NumberOfScore];
+	public Text[] timeText = new Text[NumberOfScore];
+	public Text[] missText = new Text[NumberOfScore];
 	public GameObject[] rankObjects = new GameObject[NumberOfScore];
 	private int i = 0;
 	private RankingListManager rankingListManager;
@@ -19,13 +19,13 @@ public class ScoreShowManager : MonoBehaviour {
 
 		for (i = 0; i < NumberOfScore; i++) {
 			rankObjects [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Label");
-			userText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "User").GetComponent<Text> ();
-			scoreText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Score").GetComponent<Text> ();
+			timeText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Time").GetComponent<Text> ();
+			missText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Miss").GetComponent<Text> ();
 			//rankText [i] = GameObject.Find ("Rank" + (i + 1).ToString()).GetComponent<Text> ();
 			//rankObjects [i].SetActive (false);
 			//rankText [i].text = "Rank" + (i + 1).ToString() + " : " + GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().getScoreByRank(i + 1).ToString();
-			userText [i].text = rankingListManager.getNameByRank(i + 1);
-			scoreText [i].text = rankingListManager.getScoreByRank (i + 1).ToString ();
+			timeText [i].text = ((int)(rankingListManager.getTimeByRank(i + 1) / 60)).ToString("D2") + ":" + ((int)(rankingListManager.getTimeByRank(i + 1) % 60)).ToString("D2");
+			missText [i].text = rankingListManager.getMissByRank (i + 1).ToString ();
 		}
 		/*
 		for (i = 3; i < NumberOfScore; i++) {

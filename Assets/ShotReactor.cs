@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class ShotReactor : MonoBehaviour {
 
     public SerialHandler serialHandler;
-    public Text bulletNumText;
-    public Text scoreText;
-    int bulletNum = 30;
-    public static int score = 0;
+    //public Text bulletNumText;
+    public Text missText;
+    //int bulletNum = 30;
+    public static int miss = 0;
 	private GameObject hitObject;
 	private GameObject hitImageObject;
 	private GameObject hitTextObject;
@@ -19,7 +19,7 @@ public class ShotReactor : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-		score = 0;
+		miss = 0;
 		serialHandler = GameObject.Find ("SerialHandler").GetComponent<SerialHandler>();
 		//信号を受信したときに、そのメッセージの処理を行う
 		serialHandler.OnDataReceived += OnDataReceived;
@@ -50,9 +50,9 @@ public class ShotReactor : MonoBehaviour {
         {
             if (message == "h")
             {
-                bulletNum--;
-                Debug.Log("bulletNum = " + bulletNum.ToString());
-                bulletNumText.text = bulletNum.ToString();
+                //bulletNum--;
+                //Debug.Log("bulletNum = " + bulletNum.ToString());
+                //bulletNumText.text = bulletNum.ToString();
             }
             if (message == "p")
             {
@@ -71,11 +71,11 @@ public class ShotReactor : MonoBehaviour {
     }
 
 	void ReactTargetHit(){
-		score = int.Parse(scoreText.text) + 10;
-		Debug.Log("score = " + score.ToString());
-		scoreText.text = score.ToString();
-		GameObject scoreImageDirector = GameObject.Find ("ScoreImageDirector");
-		scoreImageDirector.GetComponent<ScoreImageDirector> ().FillScoreImage ();
+		miss = int.Parse(missText.text) + 1;
+		Debug.Log("miss = " + miss.ToString());
+		missText.text = miss.ToString();
+		GameObject missImageDirector = GameObject.Find ("MissImageDirector");
+		missImageDirector.GetComponent<MissImageDirector> ().FillMissImage ();
 		hitObject.SetActive (true);
 		hitTextObject.SetActive(false);
 		hitImageObject.GetComponent<TargetImage> ().PerformAnimation();

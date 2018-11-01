@@ -20,7 +20,8 @@ public class ConfirmYesButtonController2 : MonoBehaviour {
 	/// ボタンをクリックした時の処理
 	public void OnClick() {
 		Debug.Log("Yes Button click");
-		GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().registerRankingList (ShotReactor.score, GameObject.Find ("Name").GetComponent<Text> ().text);
+		// 登録機能未実装
+		//GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().registerRankingList (ShotReactor.score, GameObject.Find ("Name").GetComponent<Text> ().text);
 		SceneManager.LoadScene("AppreciationScene");
 	}
 }
