@@ -11,9 +11,9 @@
 <img src="https://github.com/Lchika/IrairaBoScoreBoard/blob/master/doc/result.png" width="400px">
 <img src="https://github.com/Lchika/IrairaBoScoreBoard/blob/master/doc/appreciate.png" width="400px">
 
-- *画面は作成中のものです
+- *画面は作成中のものです
 
 ## 出来ればやりたいこと
 - 結果表示にグラフを使い、自分のスコアが全体分布のどの辺にいるかわかるようにする
-- ESP32等と連携してランキング表示用webサーバを作る
+- ESP32等と連携してランキング表示用webサーバを作る
 - ラベルプリンタとの連携
