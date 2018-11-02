@@ -9,6 +9,7 @@ public class UIController2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
+		StartCoroutine("down");
 	}
 
 	// Update is called once per frame
@@ -17,5 +18,11 @@ public class UIController2 : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			animator.SetBool("IsDown", false);
 		}
+	}
+
+	//「コルーチン」で呼び出すメソッド
+	private IEnumerator down(){
+		yield return new WaitForSeconds(2);
+		animator.SetBool("IsDown", false);
 	}
 }

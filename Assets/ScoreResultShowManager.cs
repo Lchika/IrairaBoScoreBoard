@@ -5,20 +5,50 @@ using UnityEngine.UI;
 
 public class ScoreResultShowManager : MonoBehaviour {
 
-	public Text timeText;
-	public Text missText;
-	public Text rankText;
+	public Text ueTimeText;
+	public Text ueMissText;
+	public Text ueRankText;
+	public Text nakaTimeText;
+	public Text nakaMissText;
+	public Text nakaRankText;
+	public Text shitaTimeText;
+	public Text shitaMissText;
+	public Text shitaRankText;
+
+	RankingListManager rankingListManager;
 	//private static int testCount = 100;
 	//private string testName = "test";
 
 	// Use this for initialization
 	void Start () {
-		timeText.text = ((int)(Timer.countTime / 60)).ToString ("D2") + ":" + ((int)Timer.countTime % 60).ToString ("D2");
-		missText.text = ShotReactor.miss.ToString ();
+		rankingListManager = GameObject.Find ("RankingListManager").GetComponent<RankingListManager>();
 		//int rank = GameObject.Find ("RankingListManager").GetComponent<RankingListManager> ().getRankFromRankingList (ShotReactor.miss);
-		int rank = GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().registerRankingList (ShotReactor.miss, Timer.countTime);
+		int rank = rankingListManager.registerRankingList (ShotReactor.miss, Timer.countTime);
 		Debug.Log("rank = " + rank.ToString ());
-		rankText.text = rank.ToString ();
+		nakaRankText.text = rank.ToString ();
+		nakaTimeText.text = ((int)(Timer.countTime / 60)).ToString ("D2") + ":" + ((int)Timer.countTime % 60).ToString ("D2");
+		nakaMissText.text = ShotReactor.miss.ToString ();
+
+		// 1位だった場合は上のラベルを非表示にし、テキストも更新しない
+		if (rank == 1) {
+			GameObject.Find ("UeLabel").SetActive (false);
+		} else {
+			ueRankText.text = (rank - 1).ToString ();
+			float ueTime = rankingListManager.getTimeByRank (rank - 1);
+			ueTimeText.text = ((int)(ueTime / 60)).ToString ("D2") + ":" + ((int)ueTime % 60).ToString ("D2");
+			ueMissText.text = rankingListManager.getMissByRank (rank - 1).ToString ();
+		}
+
+		// 100位だった場合は下のラベルを非表示にし、テキストも更新しない
+		if (rank == rankingListManager.getNumberOfScoreInfo()) {
+			GameObject.Find ("ShitaLabel").SetActive (false);
+		} else {
+			shitaRankText.text = (rank + 1).ToString ();
+			float shitaTime = rankingListManager.getTimeByRank (rank + 1);
+			shitaTimeText.text = ((int)(shitaTime / 60)).ToString ("D2") + ":" + ((int)shitaTime % 60).ToString ("D2");
+			shitaMissText.text = rankingListManager.getMissByRank (rank + 1).ToString ();
+		}
+			
 		//testCount--;
 	}
 	

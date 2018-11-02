@@ -137,4 +137,8 @@ public class RankingListManager : MonoBehaviour {
 	public float getTimeByRank(int rank){
 		return scoreInfos [rank - 1].time;
 	}
+
+	public int getNumberOfScoreInfo(){
+		return NumberOfScoreInfo;
+	}
 }
