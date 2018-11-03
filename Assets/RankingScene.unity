@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4d1ab1e2ea01d44a38d0180b586688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: /dev/tty.usbmodem1421
+  portName: /dev/tty.usbserial-A7043RK5
   baudRate: 115200
   is_added_event: 0000
 --- !u!4 &562382440

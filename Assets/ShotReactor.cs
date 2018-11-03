@@ -50,12 +50,6 @@ public class ShotReactor : MonoBehaviour {
         {
             if (message == "h")
             {
-                //bulletNum--;
-                //Debug.Log("bulletNum = " + bulletNum.ToString());
-                //bulletNumText.text = bulletNum.ToString();
-            }
-            if (message == "p")
-            {
 				ReactTargetHit();
 				/*
                 score++;

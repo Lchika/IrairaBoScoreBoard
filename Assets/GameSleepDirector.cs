@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameSleepDirector : MonoBehaviour {
 
+	public SerialHandler serialHandler;
+
 	// Use this for initialization
 	void Start () {
+		serialHandler = GameObject.Find ("SerialHandler").GetComponent<SerialHandler>();
 		StartCoroutine("moveScene");
+		serialHandler.SetSceneState (SerialHandler.SceneStateE.sceneStateResult);
 	}
 	
 	// Update is called once per frame

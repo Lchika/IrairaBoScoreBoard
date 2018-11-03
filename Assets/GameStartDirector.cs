@@ -14,6 +14,7 @@ public class GameStartDirector : MonoBehaviour {
 			serialHandler.OnDataReceived += OnDataReceived;
 			//serialHandler.is_added_event[0] = true;
 		//}
+		serialHandler.SetSceneState (SerialHandler.SceneStateE.sceneStateRanking);
     }
 
     // Update is called once per frame
@@ -27,15 +28,14 @@ public class GameStartDirector : MonoBehaviour {
     //受信した信号(message)に対する処理
     void OnDataReceived(string message)
     {
-        try
-        {
-			if (message == "s") {
-				SceneManager.LoadScene("WaitingStartScene");
-            }
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning(e.Message);
-        }
+		if (serialHandler.getSceneState() == SerialHandler.SceneStateE.sceneStateRanking) {
+			try {
+				if (message == "s") {
+					SceneManager.LoadScene ("WaitingStartScene");
+				}
+			} catch (System.Exception e) {
+				Debug.LogWarning (e.Message);
+			}
+		}
     }
 }

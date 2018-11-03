@@ -9,12 +9,15 @@ public class StartCountController : MonoBehaviour {
 	private Text countText;
 	private const int maxCount = 5;
 	private AudioSource sound;
+	public SerialHandler serialHandler;
 
 	// Use this for initialization
 	void Start () {
+		serialHandler = GameObject.Find ("SerialHandler").GetComponent<SerialHandler>();
 		countText = GetComponent<Text>();
 		sound = GetComponent<AudioSource>();
 		StartCoroutine("countDownStartTime", maxCount);
+		serialHandler.SetSceneState (SerialHandler.SceneStateE.sceneStateWaitingStart);
 	}
 	
 	// Update is called once per frame

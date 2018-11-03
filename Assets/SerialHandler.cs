@@ -10,7 +10,7 @@ public class SerialHandler : MonoBehaviour
     public event SerialDataReceivedEventHandler OnDataReceived;
 
 	//public string portName = "/dev/tty.usbserial-AI045S5Q"; // ポート名(Macだと/dev/tty.usbmodem1421など)
-	public string portName = "/dev/tty.usbmodem1421"; // pro mini
+	public string portName = "/dev/tty.usbserial-A7043RK5"; // pro mini
     public int baudRate = 115200;  // ボーレート(Arduinoに記述したものに合わせる)
 
     private SerialPort serialPort_;
@@ -24,6 +24,19 @@ public class SerialHandler : MonoBehaviour
 	public static SerialHandler singleton;
 
 	public bool[] is_added_event = new bool[2];
+
+	public enum SceneStateE : int
+	{
+		sceneStateNone = 0,
+		sceneStateRanking,
+		sceneStateWaitingStart,
+		sceneStatePlaying,
+		sceneStateResult,
+		sceneStateAppreciate,
+
+	}
+
+	private static SceneStateE scene_state = SceneStateE.sceneStateNone;
 
     void Awake()
     {
@@ -100,6 +113,7 @@ public class SerialHandler : MonoBehaviour
 					message_ = System.Text.Encoding.ASCII.GetString (buff);
 					Debug.Log ("Read Serial Massage, " + message_);
 					isNewMessageReceived_ = true;
+					this.Write(message_);
 				} catch (System.Exception e) {
 					Debug.LogWarning (e.Message);
 				}
@@ -119,4 +133,12 @@ public class SerialHandler : MonoBehaviour
             Debug.LogWarning(e.Message);
         }
     }
+
+	public void SetSceneState(SceneStateE state){
+		scene_state = state;
+	}
+
+	public SceneStateE getSceneState(){
+		return scene_state;
+	}
 }
