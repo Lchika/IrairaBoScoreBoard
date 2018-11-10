@@ -14,12 +14,12 @@ public class RankingLogWriter : MonoBehaviour {
 
 		StreamWriter sw;
 		FileInfo fi;
-		string file_path = Application.dataPath + "/RandkingData.csv";
+		string file_path = Application.dataPath + "/RankingData.csv";
 
 		if(File.Exists(file_path)){
 			File.Delete (file_path);
 		}
-		fi = new FileInfo(Application.dataPath + "/RandkingData.csv");
+		fi = new FileInfo(Application.dataPath + "/RankingData.csv");
 		sw = fi.AppendText();
 		for (int i = 0; i < 100; i++) {
 			float time = rankingListManager.getTimeByRank (i + 1);
