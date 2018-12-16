@@ -15,5 +15,6 @@
 
 ## 出来ればやりたいこと
 - 結果表示にグラフを使い、自分のスコアが全体分布のどの辺にいるかわかるようにする
-- ESP32等と連携してランキング表示用webサーバを作る
+- ~~ESP32等と連携してランキング表示用webサーバを作る~~
+  - できた -> [https://github.com/Lchika/iraira_bo_result_server](https://github.com/Lchika/iraira_bo_result_server)
 - ラベルプリンタとの連携
