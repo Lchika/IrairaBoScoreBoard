@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class RankingListManager : MonoBehaviour {
 
@@ -56,11 +57,13 @@ public class RankingListManager : MonoBehaviour {
 
 	public int registerRankingList(int miss, float time){
 		bool changeFlag = false;		// スコア上書き管理用
-		int	rank = -1;					// 順位情報（返り値）
-		float pena = time + (miss * 10);
+		int	rank = -1;                  // 順位情報（返り値）
+        float pena = time + (miss * 10);
 
-		// 全ランキング情報を順に見ていく
-		for (int i = 0; i < NumberOfScoreInfo; i++) {
+        //  ランキング表示用サーバーにデータを登録
+        StartCoroutine(uploadData(miss, time));
+        // 全ランキング情報を順に見ていく
+        for (int i = 0; i < NumberOfScoreInfo; i++) {
 			int tmpMiss;
 			float tmpTime;
 			/*
@@ -141,4 +144,20 @@ public class RankingListManager : MonoBehaviour {
 	public int getNumberOfScoreInfo(){
 		return NumberOfScoreInfo;
 	}
+
+	IEnumerator uploadData(int miss, float time) {
+		WWWForm form = new WWWForm();
+		form.AddField("miss", miss.ToString());
+		form.AddField("time", ((int)time).ToString());
+		using(UnityWebRequest www = UnityWebRequest.Post("http://192.168.4.1/", form)) {
+#pragma warning disable CS0618 // 型またはメンバーが旧型式です
+            yield return www.SendWebRequest();
+#pragma warning restore CS0618 // 型またはメンバーが旧型式です
+            if (www.isNetworkError) {
+				Debug.Log(www.error);
+			} else {
+				Debug.Log("Form upload complete!");
+      }
+    }
+  }
 }
