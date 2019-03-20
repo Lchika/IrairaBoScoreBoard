@@ -150,9 +150,7 @@ public class RankingListManager : MonoBehaviour {
 		form.AddField("miss", miss.ToString());
 		form.AddField("time", ((int)time).ToString());
 		using(UnityWebRequest www = UnityWebRequest.Post("http://192.168.4.1/", form)) {
-#pragma warning disable CS0618 // 型またはメンバーが旧型式です
             yield return www.SendWebRequest();
-#pragma warning restore CS0618 // 型またはメンバーが旧型式です
             if (www.isNetworkError) {
 				Debug.Log(www.error);
 			} else {
