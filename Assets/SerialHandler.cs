@@ -10,8 +10,8 @@ public class SerialHandler : MonoBehaviour
     public event SerialDataReceivedEventHandler OnDataReceived;
 
 	//public string portName = "/dev/tty.usbserial-AI045S5Q"; // ポート名(Macだと/dev/tty.usbmodem1421など)
-	public string portName = "/dev/tty.usbserial-A7043RK5"; // pro mini
-    public int baudRate = 115200;  // ボーレート(Arduinoに記述したものに合わせる)
+	public string portName = "/dev/tty.usbserial-DO01OTGK"; // pro mini
+    public int baudRate = 9600;  // ボーレート(Arduinoに記述したものに合わせる)
 
     private SerialPort serialPort_;
     private Thread thread_;

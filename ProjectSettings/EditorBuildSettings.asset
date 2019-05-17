@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/RankingScene.unity
     guid: b99e790a64e8a45a287f4356c285003f
   - enabled: 1
+    path: Assets/StartReadyScene.unity
+    guid: 7ed4bf451461e49039c930219867d0ae
+  - enabled: 1
     path: Assets/WaitingStartScene.unity
     guid: d48c4ec4c1999476abde29cc378e5c13
   - enabled: 1
@@ -23,3 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AppreciationScene.unity
     guid: 2685da42fd36a4af18a0294cc6965b69
+  m_configObjects: {}
