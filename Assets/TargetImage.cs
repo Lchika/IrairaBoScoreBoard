@@ -9,7 +9,7 @@ public class TargetImage : MonoBehaviour {
 	private RectTransform targetImage;
 	private GameObject hitText;
 	//private Image targetImageImg;
-	private const int NumberOfMove = 3;
+	private const int NumberOfMove = 0;
 	private const int NumberOfFlash = 2;
 	private const float WaitTimeTargetMove = 0.1f;
 	private const float WaitTimeTextFlash = 0.1f;
@@ -56,7 +56,7 @@ public class TargetImage : MonoBehaviour {
 		}
 		hitText.SetActive (true);
 
-		yield return new WaitForSeconds (1);  //1秒待つ
+		yield return new WaitForSeconds (0.1f);  //0.1秒待つ
 		hitObject.SetActive (false);
 	}
 }
