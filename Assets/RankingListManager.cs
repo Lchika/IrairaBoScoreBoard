@@ -11,8 +11,25 @@ public class RankingListManager : MonoBehaviour {
 		public int miss;
 	}
 
-	public static RankingListManager singleton;
+    [System.Serializable]
+    public class scoreJson
+    {
+        public scoreData score;
+    }
+
+    [System.Serializable]
+    public class scoreData
+    {
+        public string name;
+        public string time;
+        public string miss;
+        public string score;
+        public string difficulty;
+    }
+
+    public static RankingListManager singleton;
 	private const int NumberOfScoreInfo = 100;
+    private const int PenaByMiss = 10;
 	private static scoreInfo[] scoreInfos = new scoreInfo[NumberOfScoreInfo];
 
 	void Awake () {
@@ -58,10 +75,10 @@ public class RankingListManager : MonoBehaviour {
 	public int registerRankingList(int miss, float time){
 		bool changeFlag = false;		// スコア上書き管理用
 		int	rank = -1;                  // 順位情報（返り値）
-        float pena = time + (miss * 10);
+        float pena = time + (miss * PenaByMiss);
 
-        //  ランキング表示用サーバーにデータを登録
-        StartCoroutine(uploadData(miss, time));
+        //  スコアデータ管理サーバーにデータを登録
+        StartCoroutine(uploadDataToRaspi(miss, time));
         // 全ランキング情報を順に見ていく
         for (int i = 0; i < NumberOfScoreInfo; i++) {
 			int tmpMiss;
@@ -99,14 +116,14 @@ public class RankingListManager : MonoBehaviour {
 			}
 			*/
 			// 引数のペナルティ値より大きいペナルティ値のところまできたらスコア情報を上書きし、changeFlagをたてる
-			if (pena <= (scoreInfos [i].time + (scoreInfos [i].miss * 10.0))) {
+			if (pena <= (scoreInfos [i].time + (scoreInfos [i].miss * PenaByMiss))) {
 				tmpMiss = scoreInfos [i].miss;
 				tmpTime = scoreInfos [i].time;
 				scoreInfos [i].miss = miss;
 				scoreInfos [i].time = time;
 				miss = tmpMiss;
 				time = tmpTime;
-				pena = tmpTime + (tmpMiss * 10);
+				pena = tmpTime + (tmpMiss * PenaByMiss);
 				// 初めてスコア情報を上書きした時はその時の順位を順位情報として記憶しておく
 				if (!changeFlag) {
 					rank = i + 1;
@@ -145,17 +162,37 @@ public class RankingListManager : MonoBehaviour {
 		return NumberOfScoreInfo;
 	}
 
-	IEnumerator uploadData(int miss, float time) {
-		WWWForm form = new WWWForm();
+	IEnumerator uploadDataToRaspi(int miss, float time) {
+        scoreData postData = new scoreData();
+        postData.name = "None";
+        postData.time = ((int)time).ToString();
+        postData.miss = miss.ToString();
+        postData.score = ((int)time + miss * PenaByMiss).ToString();
+        postData.difficulty = "1";
+        scoreJson scorejson = new scoreJson();
+        scorejson.score = postData;
+        string postJson = JsonUtility.ToJson(scorejson);
+        byte[] postByte = System.Text.Encoding.UTF8.GetBytes(postJson);
+        var request = new UnityWebRequest("http://192.168.100.25:5000", "POST");
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(postByte);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.Send();
+        /*
+        WWWForm form = new WWWForm();
 		form.AddField("miss", miss.ToString());
 		form.AddField("time", ((int)time).ToString());
-		using(UnityWebRequest www = UnityWebRequest.Post("http://192.168.4.1/", form)) {
+        form.AddField("name", "None");
+        form.AddField("score", ((int)time + miss * PenaByMiss).ToString());
+        form.AddField("", ((int)time + miss * PenaByMiss).ToString());
+        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.4.1/", form)) {
             yield return www.SendWebRequest();
             if (www.isNetworkError) {
 				Debug.Log(www.error);
 			} else {
 				Debug.Log("Form upload complete!");
-      }
+		    }
+        }
+        */
     }
-  }
 }
