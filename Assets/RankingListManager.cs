@@ -45,26 +45,11 @@ public class RankingListManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scoreInfos [0].time = 600;
-		scoreInfos [0].miss = 50;
-		scoreInfos [1].time = 610;
-		scoreInfos [1].miss = 60;
-		scoreInfos [2].time = 620;
-		scoreInfos [2].miss = 70;
-		scoreInfos [3].time = 630;
-		scoreInfos [3].miss = 80;
-		scoreInfos [4].time = 640;
-		scoreInfos [4].miss = 90;
-		scoreInfos [5].time = 650;
-		scoreInfos [5].miss = 100;
-		scoreInfos [6].time = 660;
-		scoreInfos [6].miss = 110;
-		scoreInfos [7].time = 670;
-		scoreInfos [7].miss = 120;
-		scoreInfos [8].time = 680;
-		scoreInfos [8].miss = 130;
-		scoreInfos [9].time = 690;
-		scoreInfos [9].miss = 140;
+        for (int i = 0; i < NumberOfScoreInfo; i++)
+        {
+            scoreInfos[i].time = 999;
+            scoreInfos[i].miss = 999;
+        }
 	}
 	
 	// Update is called once per frame
