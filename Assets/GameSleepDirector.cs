@@ -18,13 +18,15 @@ public class GameSleepDirector : MonoBehaviour {
 	void Update () {
 		// 	右クリックされたらゲーム中画面に遷移する（デバッグ用）
 		if (Input.GetMouseButtonDown (1)) {
-			SceneManager.LoadScene("AppreciationScene");
-		}
+            SceneManager.LoadScene("AppreciationScene");
+            //SceneManager.LoadScene("RankingScene");
+        }
 	}
 
 	//「コルーチン」で呼び出すメソッド
 	private IEnumerator moveScene(){
-		yield return new WaitForSeconds(10);
-		SceneManager.LoadScene("AppreciationScene");
-	}
+		yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("AppreciationScene");
+        //SceneManager.LoadScene("RankingScene");
+    }
 }

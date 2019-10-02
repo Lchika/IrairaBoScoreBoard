@@ -14,6 +14,7 @@ public class ScoreResultShowManager : MonoBehaviour {
 	public Text shitaTimeText;
 	public Text shitaMissText;
 	public Text shitaRankText;
+    public Text nakaAllNum;
 
 	RankingListManager rankingListManager;
 	//private static int testCount = 100;
@@ -28,6 +29,8 @@ public class ScoreResultShowManager : MonoBehaviour {
 		nakaRankText.text = rank.ToString ();
 		nakaTimeText.text = ((int)(Timer.countTime / 60)).ToString ("D2") + ":" + ((int)Timer.countTime % 60).ToString ("D2");
 		nakaMissText.text = ShotReactor.miss.ToString ();
+        Debug.Log("playerNum = " + rankingListManager.getPlayerNum ().ToString ());
+        nakaAllNum.text = "/" + rankingListManager.getPlayerNum ().ToString ();
 
 		// 1位だった場合は上のラベルを非表示にし、テキストも更新しない
 		if (rank == 1) {

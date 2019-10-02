@@ -28,9 +28,10 @@ public class RankingListManager : MonoBehaviour {
     }
 
     public static RankingListManager singleton;
-	private const int NumberOfScoreInfo = 100;
+	private const int NumberOfScoreInfo = 1024;
     private const int PenaByMiss = 10;
 	private static scoreInfo[] scoreInfos = new scoreInfo[NumberOfScoreInfo];
+    private static int playerNum = 0;
 
 	void Awake () {
 		//　スクリプトが設定されていなければゲームオブジェクトを残しつつスクリプトを設定
@@ -68,7 +69,7 @@ public class RankingListManager : MonoBehaviour {
         for (int i = 0; i < NumberOfScoreInfo; i++) {
 			int tmpMiss;
 			float tmpTime;
-			/*
+            /*
 			// 引数のミス数と同じだったらタイム情報を見る
 			if (miss == scoreInfos [i].miss) {
 				// 引数のタイムより長いタイムのところまできたらスコア情報を上書きし、changeFlagをたてる
@@ -100,23 +101,25 @@ public class RankingListManager : MonoBehaviour {
 				}
 			}
 			*/
-			// 引数のペナルティ値より大きいペナルティ値のところまできたらスコア情報を上書きし、changeFlagをたてる
-			if (pena <= (scoreInfos [i].time + (scoreInfos [i].miss * PenaByMiss))) {
-				tmpMiss = scoreInfos [i].miss;
-				tmpTime = scoreInfos [i].time;
-				scoreInfos [i].miss = miss;
-				scoreInfos [i].time = time;
-				miss = tmpMiss;
-				time = tmpTime;
-				pena = tmpTime + (tmpMiss * PenaByMiss);
-				// 初めてスコア情報を上書きした時はその時の順位を順位情報として記憶しておく
-				if (!changeFlag) {
-					rank = i + 1;
-					changeFlag = true;
-				}
-			}
+            // 引数のペナルティ値より大きいペナルティ値のところまできたらスコア情報を上書きし、changeFlagをたてる
+            if (pena <= (scoreInfos[i].time + (scoreInfos[i].miss * PenaByMiss)))
+            {
+                tmpMiss = scoreInfos[i].miss;
+                tmpTime = scoreInfos[i].time;
+                scoreInfos[i].miss = miss;
+                scoreInfos[i].time = time;
+                miss = tmpMiss;
+                time = tmpTime;
+                pena = tmpTime + (tmpMiss * PenaByMiss);
+                // 初めてスコア情報を上書きした時はその時の順位を順位情報として記憶しておく
+                if (!changeFlag)
+                {
+                    rank = i + 1;
+                    changeFlag = true;
+                }
+            }
 		}
-
+        playerNum++;
 		return rank;	// (保存しているランキング内に入らなかったら-1を返す)
 	}
 
@@ -147,7 +150,12 @@ public class RankingListManager : MonoBehaviour {
 		return NumberOfScoreInfo;
 	}
 
-	IEnumerator uploadDataToRaspi(int miss, float time) {
+    public int getPlayerNum()
+    {
+        return playerNum;
+    }
+
+    IEnumerator uploadDataToRaspi(int miss, float time) {
         scoreData postData = new scoreData();
         postData.name = "None";
         postData.time = ((int)time).ToString();
