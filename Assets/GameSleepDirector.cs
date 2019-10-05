@@ -25,7 +25,7 @@ public class GameSleepDirector : MonoBehaviour {
 
 	//「コルーチン」で呼び出すメソッド
 	private IEnumerator moveScene(){
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(8);
         SceneManager.LoadScene("AppreciationScene");
         //SceneManager.LoadScene("RankingScene");
     }

@@ -9,7 +9,8 @@ public class ScoreShowManager : MonoBehaviour {
 	GameObject scorePrefab;
 	public Text[] timeText = new Text[NumberOfScore];
 	public Text[] missText = new Text[NumberOfScore];
-	public GameObject[] rankObjects = new GameObject[NumberOfScore];
+    public Text[] scoreText = new Text[NumberOfScore];
+    public GameObject[] rankObjects = new GameObject[NumberOfScore];
 	private int i = 0;
 	private RankingListManager rankingListManager;
 
@@ -21,12 +22,14 @@ public class ScoreShowManager : MonoBehaviour {
 			rankObjects [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Label");
 			timeText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Time").GetComponent<Text> ();
 			missText [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Miss").GetComponent<Text> ();
-			//rankText [i] = GameObject.Find ("Rank" + (i + 1).ToString()).GetComponent<Text> ();
-			//rankObjects [i].SetActive (false);
-			//rankText [i].text = "Rank" + (i + 1).ToString() + " : " + GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().getScoreByRank(i + 1).ToString();
-			timeText [i].text = ((int)(rankingListManager.getTimeByRank(i + 1) / 60)).ToString("D2") + ":" + ((int)(rankingListManager.getTimeByRank(i + 1) % 60)).ToString("D2");
+            scoreText[i] = GameObject.Find("Rank" + (i + 1).ToString() + "Score").GetComponent<Text>();
+            //rankText [i] = GameObject.Find ("Rank" + (i + 1).ToString()).GetComponent<Text> ();
+            //rankObjects [i].SetActive (false);
+            //rankText [i].text = "Rank" + (i + 1).ToString() + " : " + GameObject.Find ("RankingListManager").GetComponent<RankingListManager>().getScoreByRank(i + 1).ToString();
+            timeText [i].text = ((int)(rankingListManager.getTimeByRank(i + 1) / 60)).ToString("D2") + ":" + ((int)(rankingListManager.getTimeByRank(i + 1) % 60)).ToString("D2");
 			missText [i].text = rankingListManager.getMissByRank (i + 1).ToString ();
-		}
+            scoreText[i].text = ((int)rankingListManager.getScoreByRank(i + 1)).ToString();
+        }
 		/*
 		for (i = 3; i < NumberOfScore; i++) {
 			rankObjects [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Label");

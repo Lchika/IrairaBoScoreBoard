@@ -146,7 +146,12 @@ public class RankingListManager : MonoBehaviour {
 		return scoreInfos [rank - 1].time;
 	}
 
-	public int getNumberOfScoreInfo(){
+    public float getScoreByRank(int rank)
+    {
+        return (scoreInfos[rank - 1].time + scoreInfos[rank - 1].miss * PenaByMiss);
+    }
+
+    public int getNumberOfScoreInfo(){
 		return NumberOfScoreInfo;
 	}
 
