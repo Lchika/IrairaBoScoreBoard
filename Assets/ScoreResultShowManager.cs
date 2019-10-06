@@ -20,12 +20,15 @@ public class ScoreResultShowManager : MonoBehaviour {
     public Text nakaAllNum;
 
 	RankingListManager rankingListManager;
-	//private static int testCount = 100;
-	//private string testName = "test";
+    //private static int testCount = 100;
+    //private string testName = "test";
 
-	// Use this for initialization
-	void Start () {
-		rankingListManager = GameObject.Find ("RankingListManager").GetComponent<RankingListManager>();
+    public GameObject AudioSource;
+    public AudioClip top10bgm;
+
+    // Use this for initialization
+    void Start () {
+        rankingListManager = GameObject.Find ("RankingListManager").GetComponent<RankingListManager>();
 		//int rank = GameObject.Find ("RankingListManager").GetComponent<RankingListManager> ().getRankFromRankingList (ShotReactor.miss);
 		int rank = rankingListManager.registerRankingList (ShotReactor.miss, Timer.countTime);
 		Debug.Log("rank = " + rank.ToString ());
@@ -57,9 +60,17 @@ public class ScoreResultShowManager : MonoBehaviour {
 			shitaMissText.text = rankingListManager.getMissByRank (rank + 1).ToString ();
             shitaScoreText.text = ((int)rankingListManager.getScoreByRank(rank + 1)).ToString();
         }
-			
-		//testCount--;
-	}
+
+
+        AudioSource audio = AudioSource.GetComponent<AudioSource>();
+        if (rank <= 10)
+        {
+            audio.clip = top10bgm;
+        }
+        audio.Play();
+
+        //testCount--;
+    }
 	
 	// Update is called once per frame
 	void Update () {

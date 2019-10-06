@@ -1909,7 +1909,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 89dac1f25769041b481abf0033a1ae3d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2185,6 +2185,8 @@ MonoBehaviour:
   shitaRankText: {fileID: 1425407346}
   shitaScoreText: {fileID: 1866005830}
   nakaAllNum: {fileID: 212444857}
+  AudioSource: {fileID: 1616198178}
+  top10bgm: {fileID: 8300000, guid: a881dd51c0426433c9174c6001266195, type: 3}
 --- !u!224 &1702675468
 RectTransform:
   m_ObjectHideFlags: 0

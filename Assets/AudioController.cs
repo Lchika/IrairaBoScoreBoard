@@ -6,9 +6,9 @@ public class AudioController : MonoBehaviour {
 
 	public bool DontDestroyEnabled = true;
 
-	// Use this for initialization
-	void Start () {
-		if (DontDestroyEnabled) {
+    // Use this for initialization
+    void Start () {
+        if (DontDestroyEnabled) {
 			// Sceneを遷移してもオブジェクトが消えないようにする
 			DontDestroyOnLoad (this);
 		}
