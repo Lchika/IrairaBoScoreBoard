@@ -30,7 +30,7 @@ public class ScoreShowManager : MonoBehaviour {
 			missText [i].text = rankingListManager.getMissByRank (i + 1).ToString ();
             scoreText[i].text = ((int)rankingListManager.getScoreByRank(i + 1)).ToString();
         }
-		/*
+        /*
 		for (i = 3; i < NumberOfScore; i++) {
 			rankObjects [i] = GameObject.Find ("Rank" + (i + 1).ToString() + "Label");
 			rankText [i] = GameObject.Find ("Rank" + (i + 1).ToString()).GetComponent<Text> ();
@@ -41,8 +41,18 @@ public class ScoreShowManager : MonoBehaviour {
 		}
 		*/
 
-		//StartCoroutine("showScoresAscendingOrder");
-	}
+        //テストデータ(現在プレイ人数以降のスコア)は非表示にする
+        int playerNum = rankingListManager.getPlayerNum();
+        if(playerNum < NumberOfScore)
+        { 
+            for (int rank = playerNum + 1; rank <= NumberOfScore; rank++)
+            {
+                rankObjects[rank - 1].SetActive(false);
+            }
+        }
+
+        //StartCoroutine("showScoresAscendingOrder");
+    }
 
 	// Update is called once per frame
 	void Update () {
